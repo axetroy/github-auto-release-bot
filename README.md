@@ -4,6 +4,8 @@
 
 Auto generate Github release notes.
 
+[Demo](https://github.com/axetroy/github-release-bot-test/releases)
+
 ## Setup
 
 ```sh
