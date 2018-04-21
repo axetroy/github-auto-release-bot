@@ -1,12 +1,18 @@
-# blog-bot
+# Github auto release bot
 
 > a GitHub App built with [probot](https://github.com/probot/probot)
 
-Auto generate Github release notes.
+A Github bot to generate Github release notes automatically.
 
 [Demo](https://github.com/axetroy/github-release-bot-test/releases)
 
-## Setup
+## How to use it
+
+1. [Install from Github](https://github.com/apps/auto-release-bot/installations/new)
+
+Then the robot will auto generate the release note after you publish a new release.
+
+## development
 
 ```sh
 # Install dependencies
