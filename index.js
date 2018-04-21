@@ -15,10 +15,18 @@ module.exports = robot => {
     }
 
     const { data: commitDiff } = await context.github.repos.compareCommits(
-      context.repo({
-        base: lastRelease.tag_name,
-        head: release.tag_name
-      })
+      context.repo(
+        Object.assign(
+          {
+            head: release.tag_name
+          },
+          lastRelease
+            ? {
+                base: lastRelease.tag_name
+              }
+            : {}
+        )
+      )
     );
 
     // get the commits between 2 tags
@@ -103,7 +111,9 @@ module.exports = robot => {
     }
 
     const notes = [
-      `Thanks ${Object.keys(contributors).length} contributors fot this release.`
+      `Thanks ${
+        Object.keys(contributors).length
+      } contributors fot this release.`
     ];
 
     for (const type in typeList) {

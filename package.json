@@ -1,7 +1,7 @@
 {
   "name": "github-auto-release-bot",
   "version": "1.1.0",
-  "description": "",
+  "description": "A Github bot to generate Github release notes automatically.",
   "author": "axetroy <troy450409405@gmail.com>",
   "license": "ISC",
   "repository": "https://github.com/axetroy/github-auto-release-bot.git",
