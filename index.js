@@ -28,45 +28,47 @@ module.exports = robot => {
     const typeList = {
       feat: {
         label: "Features",
-        list: []
+        icon: ":rocket:"
       },
       fix: {
         label: "Bug Fixes",
-        list: []
+        icon: ":bug:"
       },
       refactor: {
         label: "Code Refactoring",
-        list: []
+        icon: ":pushpin:"
       },
       perf: {
         label: "Performance Improvements",
-        list: []
+        icon: ":zap:"
       },
       test: {
         label: "Test",
-        list: []
+        icon: ":paperclip:"
       },
       docs: {
         label: "Docs",
-        list: []
+        icon: ":memo:"
       },
       styles: {
         label: "Style",
-        list: []
+        icon: ":gem:"
       },
       chore: {
         label: "Chore",
-        list: []
+        icon: ":gear:"
       },
       deps: {
         label: "Dependencies Updates",
-        list: []
+        icon: ":tm:"
       },
       commit: {
         label: "Commits History",
-        list: []
+        icon: ":scroll:"
       }
     };
+
+    const contributors = {};
 
     for (const commit of commits) {
       const meta = `[${commit.sha}]`;
@@ -83,6 +85,7 @@ module.exports = robot => {
 
         // valid type
         if (type && typeList[type]) {
+          typeList[type].list = typeList[type].list || [];
           typeList[type].list.push(
             (scope ? `**${scope}**: ` : "") + `${subject} (${commit.sha})`
           );
@@ -90,21 +93,24 @@ module.exports = robot => {
       } catch (err) {
         console.error(err);
       } finally {
-        const author = `${commit.commit.author.name} <${
-          commit.commit.author.email
-        }>`;
+        const author = commit.commit.author.name;
+        contributors[author] = 1;
+        typeList.commit.list = typeList.commit.list || [];
         typeList.commit.list.push(
           `${meta} - ${commit.commit.message.split("\n")[0]} (${author})`
         );
       }
     }
 
-    const notes = [];
+    const notes = [
+      `Thanks ${Object.keys(contributors).length} contributors fot this release.`
+    ];
 
     for (const type in typeList) {
       const block = typeList[type];
+      block.list = block.list || [];
       const raw = block.list.length
-        ? `### ${block.label}
+        ? `### ${block.icon ? block.icon + " " + block.label : block.label}
 ${block.list.map(v => "* " + v).join("\n")}
       `
         : "";
