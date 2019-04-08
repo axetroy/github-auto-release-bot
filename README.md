@@ -1,5 +1,7 @@
 # Github auto release bot
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/axetroy/github-auto-release-bot.svg)](https://greenkeeper.io/)
+
 > a GitHub App built with [probot](https://github.com/probot/probot)
 
 A Github bot to generate Github release notes automatically.
